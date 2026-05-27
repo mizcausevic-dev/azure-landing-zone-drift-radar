@@ -1,0 +1,16 @@
+{
+  "snapshots": [
+    {
+      "id": "zone-corp-prod",
+      "name": "Corp Prod Landing Zone",
+      "scope": "MANAGEMENT_GROUP",
+      "zoneStatus": "HEALTHY",
+      "baselineStatus": "CURRENT",
+      "managementGroupPath": "/providers/Microsoft.Management/managementGroups/kg-corp-prod",
+      "controlCount": 47,
+      "owner": "Azure Platform Engineering",
+      "collectedAt": "2026-05-29T14:00:00Z"
+    }
+  ],
+  "drifts": []
+}

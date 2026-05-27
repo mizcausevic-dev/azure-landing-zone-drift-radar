@@ -1,0 +1,110 @@
+{
+  "snapshots": [
+    {
+      "id": "zone-corp-prod",
+      "name": "Corp Prod Landing Zone",
+      "scope": "MANAGEMENT_GROUP",
+      "zoneStatus": "WATCH",
+      "baselineStatus": "CURRENT",
+      "managementGroupPath": "/providers/Microsoft.Management/managementGroups/kg-corp-prod",
+      "controlCount": 47,
+      "owner": "Azure Platform Engineering",
+      "collectedAt": "2026-05-29T14:00:00Z"
+    },
+    {
+      "id": "zone-analytics-sbx",
+      "name": "Analytics Sandbox Zone",
+      "scope": "SUBSCRIPTION",
+      "zoneStatus": "CRITICAL",
+      "baselineStatus": "STALE",
+      "managementGroupPath": "/providers/Microsoft.Management/managementGroups/kg-analytics-sbx",
+      "subscriptionId": "1c6f73b3-66cf-41be-b0af-2ebfd10b1c44",
+      "controlCount": 31,
+      "owner": "Data Platform",
+      "collectedAt": "2026-05-26T02:15:00Z"
+    }
+  ],
+  "drifts": [
+    {
+      "id": "drift-public-nsg",
+      "snapshotId": "zone-corp-prod",
+      "resourcePath": "/subscriptions/2f91d9f9-e629-46cb-8b62-d82f93de31f0/resourceGroups/rg-edge-prod/providers/Microsoft.Network/networkSecurityGroups/nsg-edge-frontdoor",
+      "resourceType": "NetworkSecurityGroup",
+      "scope": "SUBSCRIPTION",
+      "controlFamily": "Network",
+      "status": "CHANGED",
+      "expectedState": "Inbound allowlist restricted to AzureFrontDoor.Backend and VPN ranges",
+      "observedState": "Inbound HTTPS open to 0.0.0.0/0",
+      "changeWindowHours": 11,
+      "breaksGuardrail": true,
+      "internetExposure": true,
+      "note": "Temporary rule never rolled back after partner cutover."
+    },
+    {
+      "id": "drift-owner-role",
+      "snapshotId": "zone-corp-prod",
+      "resourcePath": "/subscriptions/2f91d9f9-e629-46cb-8b62-d82f93de31f0/providers/Microsoft.Authorization/roleAssignments/ops-contractor-owner",
+      "resourceType": "RoleAssignment",
+      "scope": "SUBSCRIPTION",
+      "controlFamily": "Identity",
+      "status": "ADDED",
+      "expectedState": "Owner assignments limited to PIM-backed platform-admin group",
+      "observedState": "Owner granted to direct user contractor@partnerops.io",
+      "changeWindowHours": 6,
+      "breaksGuardrail": true,
+      "impactsIdentity": true
+    },
+    {
+      "id": "drift-policy-assignment",
+      "snapshotId": "zone-analytics-sbx",
+      "resourcePath": "/providers/Microsoft.Management/managementGroups/kg-analytics-sbx/providers/Microsoft.Authorization/policyAssignments/deny-public-ip-paas",
+      "resourceType": "PolicyAssignment",
+      "scope": "MANAGEMENT_GROUP",
+      "controlFamily": "Policy",
+      "status": "REMOVED",
+      "expectedState": "Deny public IP assignment on PaaS workloads",
+      "observedState": "Policy assignment missing from landing-zone inheritance",
+      "changeWindowHours": 42,
+      "breaksGuardrail": true
+    },
+    {
+      "id": "drift-defender-plan",
+      "snapshotId": "zone-analytics-sbx",
+      "resourcePath": "/subscriptions/1c6f73b3-66cf-41be-b0af-2ebfd10b1c44/providers/Microsoft.Security/pricings/VirtualMachines",
+      "resourceType": "DefenderPlan",
+      "scope": "SUBSCRIPTION",
+      "controlFamily": "Defender",
+      "status": "CHANGED",
+      "expectedState": "Defender for Servers Plan 2 enabled",
+      "observedState": "Disabled during sandbox cost cut",
+      "changeWindowHours": 77,
+      "breaksGuardrail": true
+    },
+    {
+      "id": "drift-diagnostics",
+      "snapshotId": "zone-corp-prod",
+      "resourcePath": "/subscriptions/2f91d9f9-e629-46cb-8b62-d82f93de31f0/resourceGroups/rg-secrets-prod/providers/Microsoft.KeyVault/vaults/kv-payments-prod",
+      "resourceType": "KeyVault",
+      "scope": "SUBSCRIPTION",
+      "controlFamily": "Logging",
+      "status": "CHANGED",
+      "expectedState": "Diagnostic settings shipping AuditEvent and AllMetrics to central LAW",
+      "observedState": "Missing diagnostic settings",
+      "changeWindowHours": 28
+    },
+    {
+      "id": "drift-route-bypass",
+      "snapshotId": "zone-corp-prod",
+      "resourcePath": "/subscriptions/2f91d9f9-e629-46cb-8b62-d82f93de31f0/resourceGroups/rg-net-prod/providers/Microsoft.Network/routeTables/rt-spoke-checkout",
+      "resourceType": "RouteTable",
+      "scope": "SUBSCRIPTION",
+      "controlFamily": "Connectivity",
+      "status": "CHANGED",
+      "expectedState": "Default route forced through hub firewall",
+      "observedState": "0.0.0.0/0 next hop bypass firewall to Internet",
+      "changeWindowHours": 19,
+      "breaksGuardrail": true,
+      "note": "Spoke UDR bypass introduced during incident workaround."
+    }
+  ]
+}
