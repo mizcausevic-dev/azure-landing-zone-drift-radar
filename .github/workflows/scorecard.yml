@@ -10,14 +10,14 @@ name: OpenSSF Scorecard
 # Triggers:
 #   - branch_protection_rule (fires when branch protection config changes)
 #   - Weekly Saturday cron (keeps the score fresh as new checks ship)
-#   - Push to the default project branch (catches just-shipped regressions)
+#   - Push to main (Scorecard only supports default-branch push events)
 
 on:
   branch_protection_rule:
   schedule:
     - cron: "0 13 * * 6"
   push:
-    branches: [project/azure-landing-zone-drift-radar]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
