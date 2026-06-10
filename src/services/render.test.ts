@@ -11,7 +11,13 @@ import {
 
 describe("render", () => {
   test("overview carries the Azure control-plane framing", () => {
-    expect(renderOverview()).toContain("Azure landing-zone drift");
+    const html = renderOverview();
+    expect(html).toContain("Azure landing-zone drift");
+    expect(html).toContain("Product depth");
+    expect(html).toContain("What these repos have in common");
+    expect(html).toContain("buyer value");
+    expect(html).toContain("portfolio.kineticgain.com");
+    expect(html).toContain("suite.kineticgain.com");
   });
 
   test("secondary routes render their headings", () => {

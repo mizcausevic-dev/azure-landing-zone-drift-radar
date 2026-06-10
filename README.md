@@ -25,6 +25,30 @@ This repo demonstrates the Azure platform-governance control-plane primitive for
 - offline-safe analysis of captured Azure landing-zone drift exports
 - recruiter-facing Azure platform / landing zone / management group proof that complements the Microsoft admin, AWS, and GCP cloud lanes
 
+## Product depth
+
+This is not a tenant admin console clone. It is a board- and operator-readable product surface for teams that need to explain whether their Azure estate is still inside the guardrails they promised.
+
+- **Buyer value:** gives platform, cloud security, and identity leaders a compact answer to "where did the landing zone drift, who owns the cleanup, and what has to be fixed before the next audit, expansion, or migration wave?"
+- **Technical proof:** parses synthetic baseline snapshots and drift exports into route-level pages, JSON APIs, CLI output, remediation packets, and screenshot-ready proof surfaces.
+- **GTM story:** positions Kinetic Gain as the layer between raw Azure exports and executive decisions about cloud governance, cost exposure, security posture, and rollout readiness.
+
+## What these repos have in common
+
+The Azure drift radar follows the same Kinetic Gain pattern used across the cloud, identity, revenue, and regulated-infrastructure surfaces:
+
+- a **risk signal** that turns raw system drift into a readable control weakness
+- an **owner context** that keeps accountability attached to a real team or role
+- an **evidence packet** that can support audit, diligence, board, or investor conversations
+- a **next action** that converts "we should investigate" into a concrete remediation path
+
+## Operating workflow
+
+1. Export or model the current landing-zone baseline and drift observations.
+2. Run the analyzer locally or in CI against the captured JSON payload.
+3. Review zone lanes, guardrail risks, and remediation posture before the next audit or rollout decision.
+4. Use the static site and JSON endpoints as a buyer-readable artifact for platform governance, cloud-security review, or portfolio diligence.
+
 ## Routes
 
 - `/`

@@ -167,6 +167,7 @@ function layout(title: string, active: string, body: string) {
         font-family:var(--mono); font-size:11px; color:var(--muted2); letter-spacing:.08em;
       }
       a{color:inherit}
+      .footer a{color:var(--bert2); text-decoration:none}
       code{font-family:var(--mono); font-size:12px; color:var(--bert2); background:rgba(25,199,255,.08); padding:1px 6px; border-radius:5px; border:1px solid rgba(25,199,255,.18);}
     </style>
   </head>
@@ -211,7 +212,12 @@ function layout(title: string, active: string, body: string) {
       ${body}
       <div class="footer">
         <div>azure-landing-zone-drift-radar · synthetic sample data only</div>
-        <div>routes: / · /zone-lane · /guardrail-risks · /drift-posture · /verification · /docs</div>
+        <div>
+          <a href="https://github.com/mizcausevic-dev/azure-landing-zone-drift-radar">GitHub</a> ·
+          <a href="https://portfolio.kineticgain.com/?q=Azure">Portfolio atlas</a> ·
+          <a href="https://suite.kineticgain.com/">Protocol Suite</a> ·
+          <a href="https://kineticgain.com/">Kinetic Gain</a>
+        </div>
       </div>
     </div>
   </body>
@@ -247,6 +253,22 @@ export function renderOverview() {
           <div class="src"><div class="src-name">guardrails first</div><div class="src-tit">Repair the drift before certifying the zone</div><p>${metrics.recommendation}</p></div>
           <div class="src"><div class="src-name">control evidence</div><div class="src-tit">Turn baselines into platform-readable proof</div><p>Every lane stays tied to owner, control family, resource path, and the next concrete remediation move.</p></div>
           <div class="src"><div class="src-name">recruiter signal</div><div class="src-tit">Show real Azure platform depth</div><p>This is real Azure landing-zone and management-group drift proof, not generic cloud copy.</p></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="sh"><h2>Product depth</h2><div class="note">buyer value · technical proof · GTM story</div></div>
+        <div class="stack">
+          <div class="src"><div class="src-name">buyer value</div><div class="src-tit">A concise answer for cloud-governance leaders</div><p>Shows where the Azure landing zone drifted, who owns the cleanup, and what must be fixed before audit, migration, expansion, or security-review windows move forward.</p></div>
+          <div class="src"><div class="src-name">technical proof</div><div class="src-tit">Analyzer, CLI, routes, and JSON evidence</div><p>Turns synthetic baseline snapshots and drift observations into guardrail findings, zone lanes, remediation posture, route-level HTML, and API-ready evidence packets.</p></div>
+          <div class="src"><div class="src-name">GTM story</div><div class="src-tit">Azure complexity translated into decisions</div><p>Connects raw Azure policy, Defender, network, and owner-role drift to board-readable questions about exposure, accountability, cost risk, and rollout readiness.</p></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="sh"><h2>What these repos have in common</h2><div class="note">Kinetic Gain operating pattern</div></div>
+        <div class="stack">
+          <div class="src"><div class="src-name">risk signal</div><div class="src-tit">Raw drift becomes a control weakness</div><p>Policy inheritance gaps, public ingress, disabled coverage, and stale baselines are framed as readable business and security risk, not just platform noise.</p></div>
+          <div class="src"><div class="src-name">owner context</div><div class="src-tit">Every finding stays attached to accountability</div><p>Each lane keeps the owner, control family, resource path, and next action visible so teams can act without rebuilding context from admin exports.</p></div>
+          <div class="src"><div class="src-name">evidence packet</div><div class="src-tit">Board, audit, and diligence material</div><p>The static surface, CLI output, and JSON endpoints create reusable proof for cloud governance reviews, security diligence, and portfolio operating updates.</p></div>
         </div>
       </section>`
   );
